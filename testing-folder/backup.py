@@ -14,7 +14,7 @@ def create_folder_if_not_existing(directory):
     
 def create_data_file(directory,data):
     create_folder_if_not_existing(directory)
-    log_etc_file = directory+'/log_'+directory
+    log_etc_file = directory+'/log_file'
     if not os.path.isfile(log_etc_file):
         saving_to_file(log_etc_file,data)
 
@@ -49,12 +49,13 @@ def initialize_map_directories(directory,sftp):
         exist_directory_map[direc] = 0
     return exist_directory_map
 
-def recursive_save_sftp(directory):
-    sftp = sftp_connect()
+def recursive_save_sftp(directory,sftp):
     exist_directory_map = initialize_map_directories(directory,sftp)
     for direc in exist_directory_map:
         if exist_directory_map[direc] == 0:
+            #initialize_map_directories(direc,sftp)
+            #recursive_save_sftp(direc,sftp)
             save_directory_sftp('usr/'+direc,sftp_connect())
             exist_directory_map[direc]= 1 
             
-recursive_save_sftp('usr')
+recursive_save_sftp('usr',sftp_connect())
