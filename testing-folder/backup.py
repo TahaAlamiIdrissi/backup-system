@@ -1,5 +1,7 @@
 import pysftp
 import os
+import re
+
 
 
 def sftp_connect():
@@ -20,7 +22,7 @@ def create_data_file(directory,data):
 
 def saving_to_file(filename,data):
     with open(filename,'a+') as source:
-        source.write(data)
+        source.write(str(data)+"\n")
         source.close()
 
 
@@ -57,5 +59,16 @@ def recursive_save_sftp(directory,sftp):
             #recursive_save_sftp(direc,sftp)
             save_directory_sftp('usr/'+direc,sftp_connect())
             exist_directory_map[direc]= 1 
-            
+
+
+def parsing_log_file(filename):
+    with open(filename,"r") as source:
+        for element in source:
+            new_str = re.sub('[^a-zA-Z]',' ',element)
+
+        print(new_str)
+
+""" what i'should do now is correct the format of the log files 
+after that save recursively folders inside folders  """
+
 recursive_save_sftp('usr',sftp_connect())
