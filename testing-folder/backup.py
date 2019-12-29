@@ -9,11 +9,16 @@ import os
 # this lib is know for facilitating the work with regex
 import re
 
+import conF
+
+from datetime import datetime
+
 
 """ this function will return a connection to an sftp server  """
+cnopts = pysftp.CnOpts()
+cnopts.hostkeys = None
 def sftp_connect():
-    return pysftp.Connection('172.18.250.211',username="taha",password="organisation2018")
-
+    return pysftp.Connection(conF.sftpConf.get("ip"),username=conF.sftpConf.get("username"),password=conF.sftpConf.get("password"),cnopts=cnopts)
 
 
 def create_folder_if_not_existing(directory):
@@ -37,12 +42,14 @@ def create_data_file(directory,data):
 
 
 
-""" def save_etc_sftp():
-    sftp = sftp_connect()
-    with sftp.cd('/'+'etc'):
-        etc = sftp.listdir()
-        create_data_file('log_dir',str(etc)) """
 
+def current_date():
+    today = datetime.now()
+    if today.hour < 12:
+        h = "00"
+    else:
+        h = "12"
+    return today.strftime('%Y/%m/%d')
 
 
 """ this function will take a directory as a parameter and with the help
@@ -68,11 +75,17 @@ def initialize_map_directories(directory,sftp):
     return exist_directory_map
 
 def recursive_save_sftp(directory,sftp):
-    exist_directory_map = initialize_map_directories(directory,sftp)
-    for direc in exist_directory_map:
-        if exist_directory_map[direc] == 0:
-            save_directory_sftp('usr/'+direc,sftp)
-            exist_directory_map[direc] = 1;
+    if conF.sftpConf.get("folder") == "etc":
+        sftp = sftp_connect()
+        with sftp.cd('/'+'etc'):
+            etc = sftp.listdir()
+            create_data_file('log_dir',str(etc))
+    else:
+        exist_directory_map = initialize_map_directories(directory,sftp)
+        for direc in exist_directory_map:
+            if exist_directory_map[direc] == 0:
+                save_directory_sftp(conF.sftpConf.get("folder")+'/'+direc,sftp)
+                exist_directory_map[direc] = 1
 
 def recursive_parser(directory):
     for direc in directory:
@@ -96,4 +109,12 @@ def parsing_log_file(filename):
 """ what i'should do now is correct the format of the log files
 after that save recursively folders inside folders  """
 
-recursive_save_sftp('usr',sftp_connect())
+
+
+""" def save_etc_sftp():
+    sftp = sftp_connect()
+    with sftp.cd('/'+'etc'):
+        etc = sftp.listdir()
+        create_data_file('log_dir',str(etc)) """
+
+recursive_save_sftp(conF.sftpConf.get("folder"),sftp_connect())
