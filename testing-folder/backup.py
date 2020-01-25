@@ -80,6 +80,7 @@ def recursive_save_sftp(directory,sftp):
         with sftp.cd('/'+'etc'):
             etc = sftp.listdir()
             create_data_file('log_dir',str(etc))
+        
     else:
         exist_directory_map = initialize_map_directories(directory,sftp)
         for direc in exist_directory_map:

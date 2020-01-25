@@ -1,6 +1,7 @@
 sftpConf = {
-    "ip": "192.168.1.11",
+    "ip": "172.18.250.100",
     "username": "tse_2019",
     "password": "tahafatimamapapa",
-    "folder": "var",
+    "folder": "/usr/src/backup-system/",
+    "backup-folder":"/home/tse_2019/backup_dir/"
 }
