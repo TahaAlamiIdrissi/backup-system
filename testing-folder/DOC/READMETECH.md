@@ -1,4 +1,4 @@
-# BACKUP SYSTEM (MEMOIRE TECHNIQUE)
+# BACKUP SYSTEM (DOC UTILISATEUR)
 
 Systéme de Sauvegarde automatique qui permet de selectionner des éléments (dossier ou autres) à inclure dans le processus de sauvegarde.
 
@@ -25,7 +25,7 @@ Conf = {
 ```
 ## Lancement de l'utilitaire
 
-une fois toute les étapes de l'installation effectué l'utilitaire peut être lancé comme suit:
+une fois toute les étapes de l'installation effectué l'utilitaire peut être lancé manuellement comme suit:
 
 ```bash
 sudo ./run.sh

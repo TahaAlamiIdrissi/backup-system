@@ -14,11 +14,13 @@ Commencant par la sauvegarde en ftp :
 ```python
 import ftplib
 import os
+import shutil
 import datetime
 ```
-- tout d'abord nous commençons par effectuer un importe de ce module. Ce dernier definit la classe FTP qui implémente le côté client du protocole FTP,  et quelques éléments associés.
-- Viens aprés l'utilisation du module os, ce dernier fournit une maniére portable d'utiliser les fonctionalités dépendantes du systéme d'exploitation. 
-- Et enfin le module datetime qui permettra de definier la date de sauvegarde
+- tout d'abord nous commençons par importer le module ftplib. Ce dernier definit la classe FTP qui implémente le côté client du protocole FTP,  et quelques éléments associés.
+- Viens aprés l'utilisation du module os, qui lui,  fournit une maniére portable d'utiliser les fonctionalités dépendantes du systéme d'exploitation. 
+- Le module datetime qui permettra de definier la date de sauvegarde
+- Puis viens le module shutil qui offre des fonctions utilitaire pour la copie et l'archivage des fichiers .
 
 Contenue du fichier :
 
@@ -34,7 +36,25 @@ drwxr-xr-x 2 root root 4096  25 11:41 .
 -rwxr-xr-x 1 root root  747  25 11:20 run.sh
 ```
 la deuxiéme , via les paramétres definis plus haut, permet de ce placer sur le répértoire à sauvegarder, ainsi d'appeler la prémiére fonction pour éffectuer la sauvegarde de ce dérnier.
+l'objet du message envoyé à l'utilisateur est definis lors de la sauvegarde tel que si tout c'est bien passé "Success Backup " est alors mis dans le champ qui lui est attribué dans le fichier de configuration, ainsi on pourra récupérer cette information par la suite,sinon c'est  "Error Backup" qui est ecris dans la conf.
 
+- Versions
+
+```python
+datestring = str(datetime.date.today())
+if os.path.exists(datestring):
+    conF.sftpConf["version"] = conF.sftpConf["version"]+1
+    datestring = str(datestring)+"-V-"+str(conF.sftpConf.get("version"))
+    
+os.mkdir(datestring)
+os.chdir(datestring)
+local_dir = os.getcwd()
+```
+
+En ce qui concerne les versions, la premiére sauvegarde est effectué sous la forme suivant par exemple: 
+ - 2020-01-25
+si on veut effectuer une deuxiéme version de la sauvegarde, on recupére alors une valeur qui est initialisé a 0 dans le fichier de conf, qu'on incrémente à chaque sauvegarde pour avoir l'affichage suivant:
+ - 2020-01-25-V-i avec i dans {1,2,3...}
 
 ### backupSFTP
 

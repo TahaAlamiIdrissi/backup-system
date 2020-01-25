@@ -5,6 +5,7 @@ import paramiko
 import os
 import datetime
 import shutil
+from smtpMAILING import send_email
 import conF
 
 #creation des variables qui contiendront les infos sur la connexion via SFTP
@@ -59,13 +60,15 @@ def backup_directory(local_dir,remote_dir):
         print('Backing up '+f)
         try:
             sftp.get(f, f)
+            conF.smtpConf["subject"] = "Success Backup"
         except PermissionError:
+            conF.smtpConf["subject"] = "Error Backup"
             print('Skipping '+f+' due to permissions')
 
         
     for d in directories:
         newremote = remote_dir+d+'/'
-        newlocal = local_dir+'\\'+d
+        newlocal = local_dir+'/'+d
         os.mkdir(newlocal)
         backup_directory(newlocal,newremote)
         
@@ -75,8 +78,10 @@ os.chdir(backup_dir)
 
 # creation du répértoire contenant la date courante
 datestring = str(datetime.date.today())
-if os.path.exists("./*"):
-    shutil.rmtree("./*")
+
+if os.path.exists(datestring):
+    shutil.rmtree(datestring)
+
 os.mkdir(datestring)
 os.chdir(datestring)
 local_dir = os.getcwd()
@@ -90,6 +95,7 @@ sftp = paramiko.SFTPClient.from_transport(transport)
 remote_dir = start_directory
 
 backup_directory(local_dir,remote_dir)
+send_email(conF.smtpConf.get("subject"),conF.smtpConf.get("content"))
 
 # fermeture de la connection sftp
 sftp.close()

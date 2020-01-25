@@ -100,7 +100,10 @@ os.chdir(datestring)
 local_dir = os.getcwd()
 
 # connection au host 
-ftp_obj = ftplib.FTP(host=hostname, user=username, passwd=password)
+
+ftp_obj = ftplib.FTP_TLS(host=hostname, user=username, passwd=password)
+ftp_obj.sendcmd("USER "+username)
+ftp_obj.sendcmd("PASS "+password)
 
 remote_dir = start_directory
 
@@ -108,6 +111,6 @@ remote_dir = start_directory
 
 
 backup_directory(local_dir,remote_dir)
-#send_email(conF.smtpConf.get("subject"),conF.smtpConf.get("content"))
+send_email(conF.smtpConf.get("subject"),conF.smtpConf.get("content"))
 # fermeture de la connection
 ftp_obj.quit()
