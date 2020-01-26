@@ -14,8 +14,3 @@ smtpConf = {
     "content":""
 }
 
-
-dirToSave = {
-    "etc":"/etc",
-    "other":""
-}

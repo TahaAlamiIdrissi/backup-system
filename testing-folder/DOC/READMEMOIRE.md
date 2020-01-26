@@ -15,7 +15,7 @@ Commencant par la sauvegarde en ftp :
 import ftplib
 import os
 import shutil
-import datetime
+from datetime import datetime
 ```
 - tout d'abord nous commençons par importer le module ftplib. Ce dernier definit la classe FTP qui implémente le côté client du protocole FTP,  et quelques éléments associés.
 - Viens aprés l'utilisation du module os, qui lui,  fournit une maniére portable d'utiliser les fonctionalités dépendantes du systéme d'exploitation. 
@@ -40,6 +40,8 @@ l'objet du message envoyé à l'utilisateur est definis lors de la sauvegarde te
 
 - Versions
 
+Premiére méthodes : 
+
 ```python
 datestring = str(datetime.date.today())
 if os.path.exists(datestring):
@@ -55,6 +57,15 @@ En ce qui concerne les versions, la premiére sauvegarde est effectué sous la f
  - 2020-01-25
 si on veut effectuer une deuxiéme version de la sauvegarde, on recupére alors une valeur qui est initialisé a 0 dans le fichier de conf, qu'on incrémente à chaque sauvegarde pour avoir l'affichage suivant:
  - 2020-01-25-V-i avec i dans {1,2,3...}
+Or les données concernant le numéro de versions n'etaient pas persistés .
+
+Deuxiéme méthodes :
+
+```python
+datestring = str(datetime.now().strftime("%d-%m-%y-à-%H-%M-%S"))
+```
+
+Utilisation de l'affichage temporel suivant : 26-01-20-à-15-20-01  le 26 janvier 2020 à 15h20min01sec qui est simple et éfficace.
 
 ### backupSFTP
 
@@ -101,7 +112,6 @@ backup_directory(local_dir,remote_dir)
 ### backupRSYNC
 
 
-### backupFTPS
 
 
 

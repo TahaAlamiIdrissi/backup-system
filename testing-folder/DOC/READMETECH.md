@@ -23,6 +23,22 @@ Conf = {
     "backup-folder":"<dir_ou_sauvegarder>"
 }
 ```
+
+et aussi les informations concernant le mailing
+
+```python
+smtpConf = {
+    "mail":"<mail_de_reception>",
+    "password": "<mot_de_passe>",
+    "subject":"",
+    "content":""
+}
+```
+il faut aussi activer l'accés non sécurisé dans gmail comme le montre les images suivantes.
+
+![alt test](screenshots/lesssecure)
+
+
 ## Lancement de l'utilitaire
 
 une fois toute les étapes de l'installation effectué l'utilitaire peut être lancé manuellement comme suit:
@@ -30,7 +46,16 @@ une fois toute les étapes de l'installation effectué l'utilitaire peut être l
 ```bash
 sudo ./run.sh
 ```
+ou automatiquement via crontab 
 
-
+Ouvrir un terminal :
+```bash 
+export EDITOR=<editeur_préfére> ; crontab -e
+```
+ajouter : 
+```bash
+min h j d m python <path_to_current_folder>/<script_of_your_choice> > <name_of_log_file>
+59 23 * * * python /usr/src/backup/backupSFTP.py > log_sftp
+```
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

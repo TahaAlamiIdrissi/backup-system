@@ -5,7 +5,7 @@
 import ftplib
 # Import du module OS built-in python 
 import os
-import datetime
+from datetime import datetime
 import shutil
 from smtpMAILING import send_email
 #Import du fichier de conF
@@ -51,16 +51,14 @@ def get_files_directories():
 
     return files,directories
 
+    
 def backup_directory(local_dir,remote_dir):
-
     # on ce positione sur le répértoire courant 
     os.chdir(local_dir)
     try:
         # on essaye de connecter au répértoire distant si on a les droits
         ftp_obj.cwd(remote_dir)
-
         print('In directory '+remote_dir)
-
         #recupération des fichiers et des répértoire
         files,directories = get_files_directories()
         # recupération pour chaque element de la lister des fichiers
@@ -90,11 +88,8 @@ os.chdir(backup_dir)
 
 # creation du répértoire ayant comme nom la date du jour courant
 
-datestring = str(datetime.date.today())
-if os.path.exists(datestring):
-    conF.sftpConf["version"] = conF.sftpConf["version"]+1
-    datestring = str(datestring)+"-V-"+str(conF.sftpConf.get("version"))
-    
+datestring = str(datetime.now().strftime("%d-%m-%y-à-%H-%M-%S"))
+
 os.mkdir(datestring)
 os.chdir(datestring)
 local_dir = os.getcwd()
@@ -104,10 +99,7 @@ ftp_obj = ftplib.FTP(host=hostname, user=username, passwd=password)
 
 remote_dir = start_directory
 
-
-
-
 backup_directory(local_dir,remote_dir)
-#send_email(conF.smtpConf.get("subject"),conF.smtpConf.get("content"))
+send_email(conF.smtpConf.get("subject"),conF.smtpConf.get("content"))
 # fermeture de la connection
 ftp_obj.quit()

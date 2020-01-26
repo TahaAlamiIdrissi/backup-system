@@ -3,7 +3,7 @@
 ''' Module de sauvegarde SFTP '''
 import paramiko
 import os
-import datetime
+from datetime import datetime
 import shutil
 from smtpMAILING import send_email
 import conF
@@ -77,10 +77,8 @@ def backup_directory(local_dir,remote_dir):
 os.chdir(backup_dir)
 
 # creation du répértoire contenant la date courante
-datestring = str(datetime.date.today())
+datestring = str(datetime.now().strftime("%d-%m-%y-à-%H-%M-%S"))
 
-if os.path.exists(datestring):
-    shutil.rmtree(datestring)
 
 os.mkdir(datestring)
 os.chdir(datestring)

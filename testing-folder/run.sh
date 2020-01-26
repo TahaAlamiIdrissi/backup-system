@@ -14,9 +14,8 @@ menu(){
 		echo -e "\t\t2- FTP backup "
 		echo -e "\t\t3- RSYNC backup "
 		echo -e "\t\t4- backup Locally "
-		echo -e "\t\t5- SMTP "
-		echo -e "\t\t6- quit "
-		echo -e "\t\tchoose (1) (2) (3) (4) (5) or (6) "
+		echo -e "\t\t5- quit "
+		echo -e "\t\tchoose (1) (2) (3) (4) (5) "
 		read choice
 
         case $choice in
@@ -28,9 +27,7 @@ menu(){
 				;;
 			"4") python backupLocal.py
 				;;
-			"5") insert_group
-				;;
-			"6") echo -e "\t\t\e[3;33m GNU\Taha \n \t\t2019-2020\n \t\tBOOO-BYEEEEE \e[0m"
+			"5") echo -e "\t\t\e[3;33m GNU\Taha \n \t\t2019-2020\n \t\tBOOO-BYEEEEE \e[0m"
 				break
 				;;
 		esac
