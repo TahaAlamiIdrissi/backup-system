@@ -1,0 +1,6 @@
+00 7 * * * python  <path_to_this_dir>/backupFTP.py >> ./logs/log_ftp
+00 7 * * * python  <path_to_this_dir>/backupFTPS.py >> ./logs/log_ftps
+00 7 * * * python  <path_to_this_dir>/backupSFTP.py >> ./logs/log_sftp 
+00 7 * * * python  <path_to_this_dir>/backupLOCAL.py >> ./logs/log_local 
+00 7 * * * python  <path_to_this_dir>/backupRSYNC.py >> ./logs/log_rsync 
+

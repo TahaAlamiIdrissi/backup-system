@@ -10,7 +10,7 @@ import conF
 
 #creation des variables qui contiendront les infos sur la connexion via SFTP
 hostname = conF.sftpConf.get("ip")
-port = 22
+port = conF.portConf.get("sftp")
 username = conF.sftpConf.get("username")
 password = conF.sftpConf.get("password")
 start_directory = conF.sftpConf.get("folder")
@@ -61,11 +61,13 @@ def backup_directory(local_dir,remote_dir):
         try:
             sftp.get(f, f)
             conF.smtpConf["subject"] = "Success Backup"
+            conF.smtpConf["message"] = "The back up fineshed successfully , you can find the log of what has been done attached to the mail ,\n Thank you for choosing alassiBackup,\n"
         except PermissionError:
             conF.smtpConf["subject"] = "Error Backup"
+            conF.smtpConf["message"] = "An Error occured during the back up  , you can find the log of what has been done attached to the mail ,\n Thank you for choosing alassiBackup,\n"
             print('Skipping '+f+' due to permissions')
 
-        
+
     for d in directories:
         newremote = remote_dir+d+'/'
         newlocal = local_dir+'/'+d
@@ -77,7 +79,7 @@ def backup_directory(local_dir,remote_dir):
 os.chdir(backup_dir)
 
 # creation du répértoire contenant la date courante
-datestring = str(datetime.now().strftime("%d-%m-%y-à-%H-%M-%S"))
+datestring = str(datetime.now().strftime("%d-%m-%y-%H-%M-%S"))
 
 
 os.mkdir(datestring)
@@ -93,7 +95,9 @@ sftp = paramiko.SFTPClient.from_transport(transport)
 remote_dir = start_directory
 
 backup_directory(local_dir,remote_dir)
-send_email(conF.smtpConf.get("subject"),conF.smtpConf.get("content"))
+print("------------------------------------------------------------- END OF BACK UP\n")
+
+send_email(conF.smtpConf["subject"],conF.smtpConf["message"],conF.logConf.get("log_sftp"))
 
 # fermeture de la connection sftp
 sftp.close()

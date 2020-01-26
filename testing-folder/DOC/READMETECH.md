@@ -36,11 +36,12 @@ smtpConf = {
 ```
 il faut aussi activer l'accés non sécurisé dans gmail comme le montre les images suivantes.
 
-![alt test](./screenshots/lesssecure.png)
+![alt text](./screenshots/lesssecure.png)
 
 
 ## Lancement de l'utilitaire
 
+(POUR TEST)
 une fois toute les étapes de l'installation effectué l'utilitaire peut être lancé manuellement comme suit:
 
 ```bash
@@ -57,5 +58,7 @@ ajouter :
 min h j d m python <path_to_current_folder>/<script_of_your_choice> > <name_of_log_file>
 59 23 * * * python /usr/src/backup/backupSFTP.py > log_sftp
 ```
+il suffit de modifier le fichier cronjobs.txt et de coller son contenue dans /var/spool/cron
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

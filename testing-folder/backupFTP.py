@@ -7,9 +7,10 @@ import ftplib
 import os
 from datetime import datetime
 import shutil
-from smtpMAILING import send_email
+#from smtpMAILING import send_email
 #Import du fichier de conF
 import conF
+from smtpMAILING import send_email
 
 #creation des variables qui contiendront les infos sur la connexion via FTP
 hostname = conF.sftpConf.get("ip")
@@ -77,7 +78,9 @@ def backup_directory(local_dir,remote_dir):
             print(newlocal)
             backup_directory(newlocal,newremote)
         conF.smtpConf["subject"] = "Success Backup"
+        conF.smtpConf["message"] = "The back up fineshed successfully , you can find the log of what has been done attached to the mail ,\n Thank you for choosing alassiBackup,\n"
     except:
+        conF.smtpConf["message"] = "An Error occured during the back up  , you can find the log of what has been done attached to the mail ,\n Thank you for choosing alassiBackup,\n"
         conF.smtpConf["subject"] = "Error Backup"
         print('Skipping '+remote_dir+' due to permissions!!!!!')
 
@@ -96,10 +99,16 @@ local_dir = os.getcwd()
 
 # connection au host 
 ftp_obj = ftplib.FTP(host=hostname, user=username, passwd=password)
-
+#ftp_obj.connect(hostname,conF.portConf.get("ftp"))
 remote_dir = start_directory
 
 backup_directory(local_dir,remote_dir)
-send_email(conF.smtpConf.get("subject"),conF.smtpConf.get("content"))
+
+
+
+print("------------------------------------------------------------- END OF BACK UP\n")
+
+
+send_email(conF.smtpConf["subject"],conF.smtpConf["message"],conF.logConf.get("log_ftp"))
 # fermeture de la connection
 ftp_obj.quit()

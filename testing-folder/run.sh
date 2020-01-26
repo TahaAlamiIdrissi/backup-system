@@ -19,13 +19,13 @@ menu(){
 		read choice
 
         case $choice in
-			"1") python backupSFTP.py > ./logs/log_sftp
+			"1") python backupSFTP.py >> ./logs/log_sftp
 				;;
-			"2") python backupFTP.py > ./logs/log_ftp
+			"2") python backupFTP.py >> ./logs/log_ftp
 				;;
-			"3") python backupRSYNC.py
+			"3") python backupRSYNC.py >> ./logs/log_rsync
 				;;
-			"4") python backupLocal.py
+			"4") python backupLOCAL.py >> ./logs/log_local
 				;;
 			"5") echo -e "\t\t\e[3;33m GNU\Taha \n \t\t2019-2020\n \t\tBOOO-BYEEEEE \e[0m"
 				break
