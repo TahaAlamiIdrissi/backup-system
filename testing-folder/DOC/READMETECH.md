@@ -50,7 +50,7 @@ smtpConf = {
 ```
 il faut aussi activer l'accés non sécurisé dans gmail comme le montre l'image suivantes.
 
-![alt text](./screenshots/lesssecure.png)
+![alt text](./testing-folder/screenshots/lesssecure.png)
 
 
 ## Lancement de l'utilitaire
