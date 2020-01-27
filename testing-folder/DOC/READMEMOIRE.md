@@ -6,7 +6,7 @@ Systéme de Sauvegarde automatique qui permet de selectionner des éléments (do
 
 ## Usage
 
-une fois avoir 'unzip' le dossier localement , on remarque qu'on a un ensemble de fichier backupPROTOCOL.py
+une fois avoir 'unzip' le dossier localement , on remarque qu'on a un ensemble de fichier backup_PROTOCOL_.py
 chaque fichier correspond a un mode de sauvegarde .
 
 ### Backup (FTP)
@@ -42,7 +42,7 @@ l'objet du message envoyé à l'utilisateur est definis lors de la sauvegarde te
 
 - Versions
 
-Premiére méthodes : 
+Premiére méthodes (NON UTILISÉE) : 
 
 ```python
 datestring = str(datetime.date.today())
@@ -71,7 +71,8 @@ Utilisation de l'affichage temporel suivant : 26-01-20-à-15-20-01  le 26 janvie
 
 - Envoi du contenu du log file à l'utilisateur
 
-Premier Essaie : 
+Premier Essaie (NON UTILISÉE) : 
+
 Au tout debut nous avons essayé d'envoyer dans le corps du mail les informations et logs , on a procédé de la façons suivante:
 ```python
 with open('/usr/src/backup-system/testing-folder/logs/log_ftp','r') as file:

@@ -1,3 +1,6 @@
+''' Configuration File'''
+
+#Global config for all the protocols
 sftpConf = {
     "ip": "192.168.43.72",
     "username": "tse_2019",
@@ -7,12 +10,14 @@ sftpConf = {
     "backup-folder":"/home/tse_2019/backup_dir/"
 }
 
+#port configuration
 portConf = {
     "sftp": 22,
     "ftp": 21,
     "smtp":587
 }
 
+#mailing configuration
 smtpConf = {
     "mail":"ouafine@gmail.com",
     "password": "tahafatimamapapa",
@@ -21,6 +26,7 @@ smtpConf = {
     "message":""
 }
 
+#log configuration
 logConf = {
     "log_ftp":"/usr/src/backup-system/testing-folder/logs/log_ftp",
     "log_sftp":"/usr/src/backup-system/testing-folder/logs/log_sftp",

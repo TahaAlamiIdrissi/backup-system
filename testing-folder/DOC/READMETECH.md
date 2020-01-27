@@ -62,12 +62,12 @@ Ouvrir un terminal :
 ```bash 
 export EDITOR=<editeur_préfére> ; crontab -e
 ```
-ajouter : 
+il suffit de modifier le fichier cronjobs.txt et de coller son contenue dans /var/spool/cron
+
 ```bash
 min h j d m python <path_to_current_folder>/<script_of_your_choice> > <name_of_log_file>
-59 23 * * * python /usr/src/backup/backupSFTP.py > log_sftp
+59 23 * * * python /usr/src/backup/backupSFTP.py >> .logs/log_sftp
 ```
-il suffit de modifier le fichier cronjobs.txt et de coller son contenue dans /var/spool/cron
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
