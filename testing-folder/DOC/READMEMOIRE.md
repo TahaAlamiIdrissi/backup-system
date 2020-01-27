@@ -9,9 +9,9 @@ Systéme de Sauvegarde automatique qui permet de selectionner des éléments (do
 une fois avoir 'unzip' le dossier localement , on remarque qu'on a un ensemble de fichier backup_PROTOCOL_.py
 chaque fichier correspond a un mode de sauvegarde .
 
-### Backup (FTP)
+### Backup (FTP)-(FTPS)
 
-Commencant par la sauvegarde en ftp :
+Commencant par la sauvegarde en ftp (FTPS):
 
 ```python
 import ftplib

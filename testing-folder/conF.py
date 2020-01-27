@@ -2,9 +2,9 @@
 
 #Global config for all the protocols
 sftpConf = {
-    "ip": "192.168.43.72",
-    "username": "tse_2019",
-    "password": "tahafatimamapapa",
+    "ip": "161.3.40.196",
+    "username": "tse_2020",
+    "password": "tsetse",
     "folder": "/usr/src/backup-system/",
     "version":0,
     "backup-folder":"/home/tse_2019/backup_dir/"
@@ -14,7 +14,8 @@ sftpConf = {
 portConf = {
     "sftp": 22,
     "ftp": 21,
-    "smtp":587
+    "smtp":587,
+    "ftps":21
 }
 
 #mailing configuration
