@@ -1,5 +1,6 @@
 import os
 import conF
+from smtpMAILING import send_email
 
 #Le protocol RSYNC n'est pas fonctionelle ! 
 
@@ -10,7 +11,9 @@ start_directory = conF.sftpConf.get("folder")
 backup_dir = conF.sftpConf.get("backup-folder")
 
 
-rsync ='sshpass -p '+ '"' + password + '"' +' rsync -r '+ start_directory + ' ' + username + '@' + hostname+ ':' + backup_dir + '/ --delete --links'
+rsync ='rsync -r '+ start_directory + ' ' + username + '@' + hostname+ ':' + backup_dir + '/ --delete --links'
 os.system(rsync)
 print(rsync)
+send_email(conF.smtpConf["subject"],conF.smtpConf["message"],conF.logConf.get("log_ftps"))
+
 
