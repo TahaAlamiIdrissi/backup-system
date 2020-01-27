@@ -12,4 +12,5 @@ backup_dir = conF.sftpConf.get("backup-folder")
 
 rsync ='sshpass -p '+ '"' + password + '"' +' rsync -r '+ start_directory + ' ' + username + '@' + hostname+ ':' + backup_dir + '/ --delete --links'
 os.system(rsync)
+print(rsync)
 

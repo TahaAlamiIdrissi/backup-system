@@ -150,6 +150,39 @@ la deuxiéme fonction quant à elle, permet de tester si le répértoire existe 
 et enfin, la troixiéme fonction backup_directory() qui permet de faire le back up via la commande rsync.
 
 
+### Backup (Rsync)
+
+rsync (pour remote synchronization ou synchronisation à distance), est un logiciel 1) de synchronisation de fichiers. Il est fréquemment utilisé pour mettre en place des systèmes de sauvegarde distante.
+rsync travaille de manière unidirectionnelle c'est-à-dire qu'il synchronise, copie ou actualise les données d'une source (locale ou distante) vers une destination (locale ou distante) en ne transférant que les octets des fichiers qui ont été modifiés.
+
+- Création d'un dossier miroir
+
+Voici un exemple d'une commande, utilisant le protocole SSH, qui copie à l'identique le dossier <source> vers le dossier <destination>.
+
+```bash
+rsync -e ssh -avz --delete-after /home/source user@ip_du_serveur:/dossier/destination/
+```
+
+- Exclure des fichiers
+On peut exclure des fichiers/dossiers selon beaucoup de schémas. C'est utile pour ne pas sauvegarder le cache, les fichiers temporaires, la corbeille, etc…
+
+```bash
+rsync --exclude="nom_de_dossier" --exclude="- autre_nom_de_dossier" source/ destination/
+```
+- Inclure des fichiers
+
+```bash
+rsync --include="*.csv" --exclude="*" source/ destination/
+```
+
+Dans notre cas :
+
+```bash
+rsync ='sshpass -p '+ '"' + password + '"' +' rsync -r '+ start_directory + ' ' + username + '@' + hostname+ ':' + backup_dir + '/ --delete --links'
+```
+
+on se connecte en utilisant notre pass puis on effectue la commande rsync recursive.
+
 
 ### Fichier de Configuration
 
