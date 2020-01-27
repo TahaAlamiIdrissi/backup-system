@@ -178,10 +178,10 @@ rsync --include="*.csv" --exclude="*" source/ destination/
 Dans notre cas :
 
 ```bash
-rsync ='sshpass -p '+ '"' + password + '"' +' rsync -r '+ start_directory + ' ' + username + '@' + hostname+ ':' + backup_dir + '/ --delete --links'
+rsync ='rsync -r '+ start_directory + ' ' + username + '@' + hostname+ ':' + backup_dir + '/ --delete --links'
 ```
 
-on se connecte en utilisant notre pass puis on effectue la commande rsync recursive.
+on lance la commande rsync recursive, cette dérniére nous demande alors un mot de passe qu'on doit fournir par la suite.
 
 
 ### Fichier de Configuration

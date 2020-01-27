@@ -14,6 +14,6 @@ backup_dir = conF.sftpConf.get("backup-folder")
 rsync ='rsync -r '+ start_directory + ' ' + username + '@' + hostname+ ':' + backup_dir + '/ --delete --links'
 os.system(rsync)
 print(rsync)
-send_email(conF.smtpConf["subject"],conF.smtpConf["message"],conF.logConf.get("log_ftps"))
+send_email(conF.smtpConf["subject"],conF.smtpConf["message"],conF.logConf.get("log_rsync"))
 
 
