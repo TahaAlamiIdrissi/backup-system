@@ -1,5 +1,7 @@
 # BACKUP SYSTEM (MEMOIRE TECHNIQUE)
 
+lien pour visualiser les readmes files : https://github.com/TahaAlamiIdrissi/backup-system/tree/master/testing-folder/DOC
+
 Systéme de Sauvegarde automatique qui permet de selectionner des éléments (dossier ou autres) à inclure dans le processus de sauvegarde.
 
 ## Usage

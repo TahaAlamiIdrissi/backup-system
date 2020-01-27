@@ -1,10 +1,13 @@
 # BACKUP SYSTEM (DOC UTILISATEUR)
 
+lien pour visualiser les readmes files : https://github.com/TahaAlamiIdrissi/backup-system/tree/master/testing-folder/DOC
+
+
 Systéme de Sauvegarde automatique qui permet de selectionner des éléments (dossier ou autres) à inclure dans le processus de sauvegarde.
 
 ## Installation
 
-Le projet peut etre cloné via 'the github repo ' : 
+Le projet peut etre cloné via 'la github repository' :https://github.com/TahaAlamiIdrissi/backup-system/ 
 
 l'installation des modules ce fait en lançant le script install_all.sh . 
 en précisant la version du gestionnaire de package (pip || pip3).
@@ -12,7 +15,13 @@ en précisant la version du gestionnaire de package (pip || pip3).
 ```bash
 sudo ./install_all.sh pip
 ```
-dans les fichiers présent, nous disposons d'un fichier conF.py où il faut préciser les informations de sauvegarde.
+qui va installer les modules nécéssaire au bons fonctionement des scripts, ainsi que sshpass pour rsync.
+
+Une fois cette étape finis,dans le fichier conF.py, devrait être précisé les informations de sauvegarde, comme par exemple:
+- l'ip du serveur distant 
+- le username et le password pour l'authentification au serveur distant
+- le répértoire à sauvegarder 
+- le répértoire ou la sauvegarde devrait ếtre faite. 
 
 ```python
 Conf = {
@@ -34,7 +43,7 @@ smtpConf = {
     "content":""
 }
 ```
-il faut aussi activer l'accés non sécurisé dans gmail comme le montre les images suivantes.
+il faut aussi activer l'accés non sécurisé dans gmail comme le montre l'image suivantes.
 
 ![alt text](./screenshots/lesssecure.png)
 
