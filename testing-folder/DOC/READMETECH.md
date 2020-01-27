@@ -13,7 +13,12 @@ l'installation des modules ce fait en lançant le script install_all.sh .
 en précisant la version du gestionnaire de package (pip || pip3).
 
 ```bash
-sudo ./install_all.sh pip
+sudo ./install_all.sh pip 
+```
+or
+
+```bash
+sudo ./install_all.sh pip3
 ```
 qui va installer les modules nécéssaire au bons fonctionement des scripts, ainsi que sshpass pour rsync.
 
